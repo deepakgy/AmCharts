@@ -1,148 +1,172 @@
-var chart = AmCharts.makeChart("chartdiv", {
-    "type": "serial",
-    "theme": "light",
-    "marginRight":80,
-    "autoMarginOffset":20,
-    "dataDateFormat": "YYYY-MM-DD HH:NN",
-    "dataProvider": [{
-        "date": "2012-01-01",
-        "value": 8
-    }, {
-        "date": "2012-01-01",
-        "value": 8
-    }, {
-        "date": "2012-01-02",
-        "color":"#CC0000",
-        "value": 10
-    }, {
-        "date": "2012-01-03",
-        "value": 12
-    }, {
-        "date": "2012-01-04",
-        "value": 14
-    }, {
-        "date": "2012-01-05",
-        "value": 11
-    }, {
-        "date": "2012-01-06",
-        "value": 6
-    }, {
-        "date": "2012-01-07",
-        "value": 7
-    }, {
-        "date": "2012-01-08",
-        "value": 9
-    }, {
-        "date": "2012-01-09",
-        "value": 13
-    }, {
-        "date": "2012-01-10",
-        "value": 15
-    }, {
-        "date": "2012-01-11",
-        "color":"#CC0000",
-        "value": 19
-    }, {
-        "date": "2012-01-12",
-        "value": 21
-    }, {
-        "date": "2012-01-13",
-        "value": 22
-    }, {
-        "date": "2012-01-14",
-        "value": 20
-    }, {
-        "date": "2012-01-15",
-        "value": 18
-    }, {
-        "date": "2012-01-16",
-        "value": 14
-    }, {
-        "date": "2012-01-17",
-        "color":"#CC0000",
-        "value": 16
-    }, {
-        "date": "2012-01-18",
-        "value": 18
-    }, {
-        "date": "2012-01-19",
-        "value": 17
-    }, {
-        "date": "2012-01-20",
-        "value": 15
-    }, {
-        "date": "2012-01-21",
-        "value": 12
-    }, {
-        "date": "2012-01-22",
-        "color":"#CC0000",
-        "value": 10
-    }, {
-        "date": "2012-01-23",
-        "value": 8
-    }],
-    "valueAxes": [{
-        "axisAlpha": 0,
-        "guides": [{
-            "fillAlpha": 0.1,
-            "fillColor": "#888888",
-            "lineAlpha": 0,
-            "toValue": 16,
-            "value": 10
-        }],
-        "position": "left",
-        "tickLength": 0
-    }],
-    "graphs": [{
-        "balloonText": "[[category]]<br><b><span style='font-size:14px;'>value:[[value]]</span></b>",
-        "bullet": "round",
-        "dashLength": 3,
-        "colorField":"color",
-        "valueField": "value"
-    }],
-    "trendLines": [{
-        "finalDate": "2012-01-11 12",
-        "finalValue": 19,
-        "initialDate": "2012-01-02 12",
-        "initialValue": 10,
-        "lineColor": "#CC0000"
-    }, {
-        "finalDate": "2012-01-22 12",
-        "finalValue": 10,
-        "initialDate": "2012-01-17 12",
-        "initialValue": 16,
-        "lineColor": "#CC0000"
-    }],
-    "chartScrollbar": {
-        "scrollbarHeight":2,
-        "offset":-1,
-        "backgroundAlpha":0.1,
-        "backgroundColor":"#888888",
-        "selectedBackgroundColor":"#67b7dc",
-        "selectedBackgroundAlpha":1
-    },
-    "chartCursor": {
-        "fullWidth":true,
-        "valueLineEabled":true,
-        "valueLineBalloonEnabled":true,
-        "valueLineAlpha":0.5,
-        "cursorAlpha":0
-    },
-    "categoryField": "date",
-    "categoryAxis": {
-        "parseDates": true,
-        "axisAlpha": 0,
-        "gridAlpha": 0.1,
-        "minorGridAlpha": 0.1,
-        "minorGridEnabled": true
-    },
-    "export": {
-        "enabled": true
-     }
-});
+var chartData1 = [];
+var chartData2 = [];
+var chartData3 = [];
+var chartData4 = [];
 
-chart.addListener("dataUpdated", zoomChart);
+generateChartData();
 
-function zoomChart(){
-    chart.zoomToDates(new Date(2012, 0, 2), new Date(2012, 0, 13));
+function generateChartData() {
+  var firstDate = new Date();
+  firstDate.setDate( firstDate.getDate() - 500 );
+  firstDate.setHours( 0, 0, 0, 0 );
+
+  for ( var i = 0; i < 500; i++ ) {
+    var newDate = new Date( firstDate );
+    newDate.setDate( newDate.getDate() + i );
+
+    var a1 = Math.round( Math.random() * ( 40 + i ) ) + 100 + i;
+    var b1 = Math.round( Math.random() * ( 1000 + i ) ) + 500 + i * 2;
+
+    var a2 = Math.round( Math.random() * ( 100 + i ) ) + 200 + i;
+    var b2 = Math.round( Math.random() * ( 1000 + i ) ) + 600 + i * 2;
+
+    var a3 = Math.round( Math.random() * ( 100 + i ) ) + 200;
+    var b3 = Math.round( Math.random() * ( 1000 + i ) ) + 600 + i * 2;
+
+    var a4 = Math.round( Math.random() * ( 100 + i ) ) + 200 + i;
+    var b4 = Math.round( Math.random() * ( 100 + i ) ) + 600 + i;
+
+    chartData1.push( {
+      "date": newDate,
+      "value": a1,
+      "volume": b1
+    } );
+    chartData2.push( {
+      "date": newDate,
+      "value": a2,
+      "volume": b2
+    } );
+    chartData3.push( {
+      "date": newDate,
+      "value": a3,
+      "volume": b3
+    } );
+    chartData4.push( {
+      "date": newDate,
+      "value": a4,
+      "volume": b4
+    } );
+  }
 }
+
+var chart = AmCharts.makeChart( "chartdiv", {
+  "type": "stock",
+  "theme": "light",
+  "dataSets": [ {
+      "title": "first data set",
+      "fieldMappings": [ {
+        "fromField": "value",
+        "toField": "value"
+      }, {
+        "fromField": "volume",
+        "toField": "volume"
+      } ],
+      "dataProvider": chartData1,
+      "categoryField": "date"
+    }, {
+      "title": "second data set",
+      "fieldMappings": [ {
+        "fromField": "value",
+        "toField": "value"
+      }, {
+        "fromField": "volume",
+        "toField": "volume"
+      } ],
+      "dataProvider": chartData2,
+      "categoryField": "date"
+    }, {
+      "title": "third data set",
+      "fieldMappings": [ {
+        "fromField": "value",
+        "toField": "value"
+      }, {
+        "fromField": "volume",
+        "toField": "volume"
+      } ],
+      "dataProvider": chartData3,
+      "categoryField": "date"
+    }, {
+      "title": "fourth data set",
+      "fieldMappings": [ {
+        "fromField": "value",
+        "toField": "value"
+      }, {
+        "fromField": "volume",
+        "toField": "volume"
+      } ],
+      "dataProvider": chartData4,
+      "categoryField": "date"
+    }
+  ],
+
+  "panels": [ {
+    "showCategoryAxis": false,
+    "title": "Value",
+    "percentHeight": 70,
+    "stockGraphs": [ {
+      "id": "g1",
+      "valueField": "value",
+      "comparable": true,
+      "compareField": "value",
+      "balloonText": "[[title]]:<b>[[value]]</b>",
+      "compareGraphBalloonText": "[[title]]:<b>[[value]]</b>"
+    } ],
+    "stockLegend": {
+      "periodValueTextComparing": "[[percents.value.close]]%",
+      "periodValueTextRegular": "[[value.close]]"
+    }
+  }, {
+    "title": "Volume",
+    "percentHeight": 30,
+    "stockGraphs": [ {
+      "valueField": "volume",
+      "type": "column",
+      "showBalloon": false,
+      "fillAlphas": 1
+    } ],
+    "stockLegend": {
+      "periodValueTextRegular": "[[value.close]]"
+    }
+  } ],
+
+  "chartScrollbarSettings": {
+    "graph": "g1"
+  },
+
+  "chartCursorSettings": {
+    "valueBalloonsEnabled": true,
+    "fullWidth": true,
+    "cursorAlpha": 0.1,
+    "valueLineBalloonEnabled": true,
+    "valueLineEnabled": true,
+    "valueLineAlpha": 0.5
+  },
+
+  "periodSelector": {
+    "position": "left",
+    "periods": [ {
+      "period": "MM",
+      "selected": true,
+      "count": 1,
+      "label": "1 month"
+    }, {
+      "period": "YYYY",
+      "count": 1,
+      "label": "1 year"
+    }, {
+      "period": "YTD",
+      "label": "YTD"
+    }, {
+      "period": "MAX",
+      "label": "MAX"
+    } ]
+  },
+
+  "dataSetSelector": {
+    "position": "left"
+  },
+
+  "export": {
+    "enabled": true
+  }
+} );

@@ -52,6 +52,18 @@ AmCharts.ready(function() {
   chart.mouseWheelZoomEnabled= true;
   chart.dataDateFormat = "YYYY-MM-DD";
   
+   chart.type = "serial";
+  chart.theme= "light";
+  chart.marginRight= 40;
+  chart.marginLeft= 40;
+  chart.autoMarginOffset= 20;
+  chart.mouseWheelZoomEnabled=true;
+  chart.dataDateFormat= "YYYY-MM-DD";
+  chart.valueAxes.id= "v1";
+  chart.valueAxes.axisAlpha= 0;
+  chart.valueAxes.position= "left";
+  chart.valueAxes.ignoreAxisWidth=true;
+  
 
   // GRAPHS
   var graph1 = new AmCharts.AmGraph();
